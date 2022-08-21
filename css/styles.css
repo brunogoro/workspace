@@ -188,3 +188,30 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+.mt-5 {
+  text-align: center!important;
+  line-height: 1.5;
+}
+.btn {
+  background-color: #0d6efd;
+  color: white;
+  margin-top: 3%;
+}
+.form-box{
+  box-sizing: border-box;
+  line-height: 1.5;
+  padding: 0.5rem 0.5rem;
+}
+.form-alert{
+  margin-bottom: 0;
+  font-size: 13px;
+  display: none;
+}
+.form-alert-active {
+  display: block;
+  color: red;
+}
+.form-text{
+  margin-bottom: 0;
+  color: black;
+}
