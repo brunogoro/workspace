@@ -16,6 +16,7 @@ function validation(){
 btn.addEventListener("click", () => {
     if(validation()){
         window.location.replace("home.html");
+        localStorage.setItem("email", inputs[0].value);
     }else{
         let alerts = document.querySelectorAll(".form-alert");
         for (let alert of alerts) {
