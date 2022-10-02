@@ -12,6 +12,10 @@ function showEmail(){
 }
 showEmail();
 
+function cleanEmail(){
+  localStorage.removeItem("email")
+}
+
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }

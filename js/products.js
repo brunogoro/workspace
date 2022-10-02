@@ -1,13 +1,20 @@
 let cateId = localStorage.getItem("catID")
-const DATA_URL = 'https://japceibal.github.io/emercado-api/cats_products/'+cateId+'.json';
+const DATA_URL = PRODUCTS_URL + cateId + EXT_TYPE;
 let list = document.getElementById("container");
 let title = document.getElementById("category");
 let newList = [];
 let minCost = undefined;
 let maxCost = undefined;
+
+function setProductID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
+
 function showTitle(data){
     title.innerHTML = `<p class="lead">Verás aquí todos los productos de la categoría ${data.catName}.</p>`;
 }
+
 function showList(data) {
     list.innerHTML = "";
     for (let dat of data){
@@ -17,7 +24,7 @@ function showList(data) {
             `
             <div class="row">
                 <div class="list-group">
-                    <div class="list-group-item list-group-item-action cursor-active">
+                    <div onclick="setProductID(${dat.id})"class="list-group-item list-group-item-action cursor-active">
                         <div class="row">
                             <div class="col-3">
                                 <img class="img-thumbnail" src="${dat.image}">

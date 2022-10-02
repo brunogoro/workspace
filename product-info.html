@@ -31,7 +31,16 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="" id="showEmail"></a>
+            <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="showEmail" data-bs-toggle="dropdown" aria-expanded="false">
+              </a>
+            
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="sell.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="index.html" onclick="cleanEmail()">Cerrar sesión</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -39,8 +48,67 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="row">
+        <div class="text p-4" id="title"></div>
+          <hr>
+          <div class="col-4">
+            <div class="text p-4">
+              <strong>Precio</strong>
+              <div id="price"></div>
+              <strong>Descripción</strong>
+              <div id="description"></div>
+              <strong>Categoría</strong>
+              <div id="category"></div>
+              <strong>Cantidad de vendidos</strong>
+              <div id="cantSold"></div>
+            </div>
+          </div>
+          <div class="col-8"col-sm-6 col-md-3>
+            <div class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner" id="img"></div>
+            </div>
+          </div>  
+          <hr>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="text p-4" >
+          <h3>Comentarios</h3>
+          <ul class="list-group" id="listComments">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="text p-4" >
+          <h3>Comentar</h3>
+          <label for="form-control" class="form-label">Tu opinión:</label>
+          <div class="col-sm-6">
+            <textarea class="form-control" id="comText"></textarea>
+            <div class="col-4">
+              <p>Tu puntuación:</p> 
+            </div>
+            <div class="col-2">
+              <select aria-label="Default select example" name="score-range" id="score-range">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option> 
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="newComment()">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="col-auto">
+        <h3 class="text-center">Productos relacionados:</h3>
+        <div class="row justify-content-center" id="prodRelated"></div>
       </div>
     </div>
   </main>
