@@ -215,3 +215,10 @@ a.custom-card:hover {
   margin-bottom: 0;
   color: black;
 }
+.text-label{
+  display:inline-block;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

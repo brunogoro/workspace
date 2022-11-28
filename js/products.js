@@ -1,7 +1,7 @@
 let cateId = localStorage.getItem("catID")
 const DATA_URL = PRODUCTS_URL + cateId + EXT_TYPE;
-let list = document.getElementById("container");
-let title = document.getElementById("category");
+const list = document.getElementById("container");
+const title = document.getElementById("category");
 let newList = [];
 let minCost = undefined;
 let maxCost = undefined;
@@ -10,6 +10,22 @@ function setProductID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
 }
+
+function search(){
+    let search = document.getElementById('searchInput').value;
+    let searchList = search.toLowerCase();
+    let listFilter = undefined;
+
+    if (search != null){
+        listFilter = newList.filter(
+            ({ name, description }) =>
+                description.toLocaleLowerCase().includes(searchList) ||
+                name.toLocaleLowerCase().includes(searchList)
+          );
+    };
+    showList(listFilter);
+};
+
 
 function showTitle(data){
     title.innerHTML = `<p class="lead">Verás aquí todos los productos de la categoría ${data.catName}.</p>`;
@@ -51,6 +67,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         .then(data => {
             showTitle(data);
             showList(data.products);
+            console.log(data);
             newList = data.products;
         });
 });

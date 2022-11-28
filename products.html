@@ -35,9 +35,9 @@
                 </a>
               
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="sell.html">Mi carrito</a></li>
-                  <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-                  <li><a class="dropdown-item" href="index.html" onclick="cleanEmail()">Cerrar sesión</a></li>
+                  <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                  <li><a class="dropdown-item" onclick="isLogin()">Mi perfil</a></li>
+                  <li><a class="dropdown-item" href="index.html" onclick="cleanProfile()">Cerrar sesión</a></li>
                 </ul>
               </div>
             </li>
@@ -80,6 +80,11 @@
             <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="col text-left">
+      <div class="input-group col-md-4" style="width: 350px;">
+        <input class="form-control py-2" type="search" placeholder="Search" oninput="search()" id="searchInput" style="height: 39px;">
       </div>
     </div>
   </div> 

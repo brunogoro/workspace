@@ -24,7 +24,7 @@ function showText(data) {
         } else {
             document.getElementById('img').innerHTML += `
             <div class="carousel-item">
-                <img src="${img}" class="d-block w-1" data-bs-interval="0.5"> 
+                <img src="${img}" class="d-block w-1" data-bs-interval="15"> 
             </div>
         `
         }

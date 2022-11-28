@@ -14,6 +14,9 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
+      <div role="alert" id="alertSucces">
+        This is a success alert—check it out!
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,13 +34,14 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="showEmail" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="showEmail"
+                data-bs-toggle="dropdown" aria-expanded="false">
               </a>
-            
+
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="sell.html">Mi carrito</a></li>
-                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-                <li><a class="dropdown-item" href="index.html" onclick="cleanEmail()">Cerrar sesión</a></li>
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" onclick="isLogin()">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="index.html" onclick="cleanProfile()">Cerrar sesión</a></li>
               </ul>
             </div>
           </li>
@@ -45,13 +49,217 @@
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <main class="pb-5">
+    <form class="row g-3 needs-validation" id="form" action="#" novalidate>
+      <div class="container">
+        <div class="text-center p-4">
+          <h2>Carrito de compras</h2>
+        </div>
       </div>
-    </div>
+      <div class="container">
+        <h3 class="text p-4">Articulos a comprar</h3>
+        <div class="row justify-content-md-center">
+          <div class="col-2"></div>
+          <div class="col-2 text-center"><strong>Nombre</strong></div>
+          <div class="col-2 text-center"><strong>Costo</strong></div>
+          <div class="col-2 text-center"><strong>Cantidad</strong></div>
+          <div class="col-2 text-center"><strong>Subtotal</strong></div>
+          <hr style="width:80%; height:3px;">
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-2 text-center" id="imgProd"></div>
+          <div class="col-2 text-center" id="nameProd"></div>
+          <div class="col-2 text-center" id="costProd"></div>
+          <div class="col-2 text-center"> <input type="text" class="text-center" style="width: 60px; height: 30px;"
+              oninput="increaseCount(); checking()" id="cantProd"></div>
+          <div class="col-2 text-center"><strong id="currency"></strong> <strong id="subProd"></strong></div>
+          <hr style="width: 80%; margin-top: 10px;">
+          <hr style="width:80%; height:3px;">
+        </div>
+        <hr style="width:100%; height:3px;">
+        <h3 class="text p-4">Tipo de envio</h3>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="form-checks">
+                <input class="form-check-input" style="margin-left: 10px;" type="radio" id="checkPremium" name="check"
+                  value="option1" required onclick="checking()">
+                <label class="form-check-label" for="checkPremium" style="font-size: 18px;"> Premium de 2 a 5
+                  dias(15%)</label><br>
+                <input class="form-check-input" style="margin-left: 10px;" type="radio" id="checkExpress" name="check"
+                  value="option2" onclick="checking()">
+                <label class="form-check-label" for="checkExpress" style="font-size: 18px;">Express de 5 a 8
+                  dias(7%)</label><br>
+                <input class="form-check-input" style="margin-left: 10px;" type="radio" id="checkStandard" name="check"
+                  value="option3" onclick="checking()">
+                <label class="form-check-label" for="checkStandard" style="font-size: 18px;">Standard de 12 a 15
+                  dias(5%)</label><br>
+                <div class="invalid-feedback">Debe seleccionar un tipo de envio</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="text p-4">Dirección de envío</h3>
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-5">
+              <div class="form-box">
+                <label class="form-label" style="font-size: 18px;">Calle</label>
+                <input type="text" class="form-control" id="street" style="width: 450px; height: 40px;" required>
+                <div class="invalid-feedback">Debe ingresar una Calle.</div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="form-box">
+                <label class="form-label" style="font-size: 18px;">Número</label>
+                <input type="text" class="form-control" id="number" style="height: 40px;" required>
+                <div class="invalid-feedback">Debe ingresar un número.</div>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="form-box">
+                <label class="form-label" style="font-size: 18px;">Esquina</label>
+                <input type="text" class="form-control" id="street2" style="width: 450px; height: 40px;" required>
+                <div class="invalid-feedback">Debe ingresar una esquina.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <hr style="width:100%; margin-top: 50px;">
+        <h3 class="text p-4">Costos</h3>
+        <div class="row">
+          <div class="list-group" style="margin-left: 30px; width: 97%;">
+            <div class="list-group-item list-group-item-action cursor-active">
+              <div class="row">
+                <div class="col" style="margin-left: 5px;">
+                  <h4>Subtotal</h4>
+                  <p>Costo unitario del producto por cantidad</p>
+                </div>
+                <div class="col">
+                  <div class="d-flex w-100 justify-content-end" style="margin-right: 5px; margin-top: 20px;">
+                    <h4 id="subProd2"></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item list-group-item-action cursor-active">
+              <div class="row">
+                <div class="col" style="margin-left: 5px;">
+                  <h4>Costo de envio</h4>
+                  <p>Según el tipo de envío</p>
+                </div>
+                <div class="col">
+                  <div class="d-flex w-100 justify-content-end" style="margin-right: 5px; margin-top: 20px;">
+                    <h4 id="costEnvio"></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item list-group-item-action cursor-active">
+              <div class="row">
+                <div class="col" style="margin-left: 5px;">
+                  <h4>Total ($)</h4>
+                </div>
+                <div class="col">
+                  <div class="d-flex w-100 justify-content-end" style="margin-right: 5px; margin-top: 10px;">
+                    <h4 id="total"></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <hr style="width:100%; margin-top: 50px;">
+        <h3 class="text p-4">Forma de pago</h3>
+        <div class="row">
+          <div class="col-2" style="margin-left: 25px;">
+            <p id="alertPago">No ha seleccionado</p>
+          </div>
+          <div class="col-1" style="margin-left: 0px;">
+            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalName">Seleccionar</a>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><b>Forma de pago</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-checks">
+                      <input class="form-check-input" type="radio" id="checkAccount" name="checkPayment" value="option1"
+                        required onclick="typePayment()">
+                      <label class="form-check-label" for="checkAccount" style="font-size: 18px;">Tarjeta de
+                        crédito</label><br>
+                      <div class="row align-items-center">
+                        <hr>
+                        <div class="col-6">
+                          <div class="form-box" style="border-right: 50px;">
+                            <label class="form-label" for="numCard">Número de tarjeta</label>
+                            <input type="text" class="form-control" id="numCard" style="width: 225px; height: 40px;"
+                              required>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <div class="form-box">
+                            <label class="form-label" for="numVerifier">Codigo de seg.</label>
+                            <input type="text" class="form-control" id="numVerifier" style=" width: 120px;height: 40px;"
+                              required>
+                          </div>
+                        </div>
+                        <div class="col-5">
+                          <div class="form-box">
+                            <label class="form-label" for="date">Vencimiento (MM/AA)</label>
+                            <input type="text" class="form-control" id="date"
+                              style="width: 225px; height: 40px;margin-bottom: 15px;" required>
+                          </div>
+                        </div>
+                      </div>
+                      <input class="form-check-input" type="radio" id="checkBank" name="checkPayment" value="option2"
+                        onclick="typePayment()">
+                      <label class="form-check-label" for="checkBank" style="font-size: 18px;">Transferencia
+                        bancaria</label><br>
+                      <div class="row align-items-center">
+                        <hr>
+                        <div class="col-6">
+                          <div class="form-box" style="border-right: 50px;">
+                            <label class="form-label" for="numAccount">Número de cuenta</label>
+                            <input type="text" class="form-control" id="numAccount" style="width: 225px; height: 40px;"
+                              required>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="width: 250px;">
+              <div class="invalid-feedback" id="payment-feedback">
+                Debe seleccionar metodo de pago.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 text-center">
+        <button type="submit" class="btn btn-primary" style="width: 650px;">Finalizar Compra</button>
+      </div>
+    </form>
   </main>
+
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p>¡Has comprado con éxito!</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
